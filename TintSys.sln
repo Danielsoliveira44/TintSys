@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TintSysDesk", "TintSysDesk\TintSysDesk.csproj", "{9F8AE652-C61E-48CC-881B-CA7B52D5585A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TintSysClass", "ClassLibrary2\TintSysClass.csproj", "{1CF05812-14EA-40E3-B92C-B09249E134C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F8AE652-C61E-48CC-881B-CA7B52D5585A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F8AE652-C61E-48CC-881B-CA7B52D5585A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F8AE652-C61E-48CC-881B-CA7B52D5585A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F8AE652-C61E-48CC-881B-CA7B52D5585A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CF05812-14EA-40E3-B92C-B09249E134C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF05812-14EA-40E3-B92C-B09249E134C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CF05812-14EA-40E3-B92C-B09249E134C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CF05812-14EA-40E3-B92C-B09249E134C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {41D5130A-DE59-4769-95CA-8255571DDF09}
+	EndGlobalSection
+EndGlobal

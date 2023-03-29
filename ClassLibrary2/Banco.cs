@@ -31,5 +31,10 @@ namespace TintSysClass
             }
             return cmd;
         }
+
+        internal static void Fechar(MySqlCommand cmd)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

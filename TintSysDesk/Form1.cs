@@ -28,7 +28,7 @@
 //        //    label3.Text = n.Sigla;
 
 
-//        //    comboBox1.DataSource = Nivel.Listar();
+//        //    comboBox1.DataSource = Nivel.Listar();s
 //        //    comboBox1.DisplayMember = "Nome";
 //        //    comboBox1.ValueMember = "Id";
 

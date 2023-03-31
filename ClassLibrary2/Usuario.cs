@@ -1,14 +1,17 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using TintSysClass;
+using MySql.Data.MySqlClient;
 
-namespace ClassLibrary2
+namespace TintSysClass
 {
-    internal class Usuario
+    public class Usuario
     {
         private int id;
         private string nome;

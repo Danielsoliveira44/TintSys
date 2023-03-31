@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TintSysClass;
 
 namespace TintSysDesk
 {
@@ -16,24 +15,6 @@ namespace TintSysDesk
         public FrmUsuarios()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        private void FrmUsuarios_Load(object sender, EventArgs e)
-        {
-            comboBox1.DataSource = Nivel.Listar();
-            comboBox1.ValueMember = "Id";
-            comboBox1.DisplayMember= "Nome";
-
-            List<Usuario> lista 
         }
     }
 }

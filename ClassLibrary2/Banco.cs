@@ -9,13 +9,13 @@ namespace TintSysClass
 {
     internal static class Banco
     {
-        private static string strConn;
+        private static string strConn; // atributo
 
         public static MySqlCommand Abrir()
         {
-            strConn = @"server=127.0.0.1;database=ti93sysdb;port3307,user id=root;password=usbw";
+            strConn = @"server=127.0.0.1;database=ti93sysdb;port=3307;user id=root;password=usbw";
             MySqlCommand cmd = new MySqlCommand();
-            try // tentar abrir
+            try // Fluxos alternativos (Esp UC Doc)
             {
                 MySqlConnection cn = new MySqlConnection(strConn);
                 if (cn.State != System.Data.ConnectionState.Open)
@@ -24,17 +24,19 @@ namespace TintSysClass
                 }
                 cmd.Connection = cn;
             }
-            catch(Exception)
+            catch (Exception)
             {
-
                 throw;
             }
             return cmd;
         }
-
-        internal static void Fechar(MySqlCommand cmd)
+        public static void Fechar(MySqlCommand cmd)
         {
-            throw new NotImplementedException();
+            if (cmd.Connection.State == System.Data.ConnectionState.Open)
+            {
+                cmd.Connection.Close();
+            }
         }
+
     }
 }

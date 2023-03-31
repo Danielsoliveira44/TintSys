@@ -36,13 +36,6 @@ namespace TintSysDesk
         {
 
         }
-        //private void manterToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    FrmUsuarios frmUsuarios= new FrmUsuarios();
-        //    frmUsuarios.MdiParent= this;
-        //    //frmUsuarios.ShowDialog();
-        //    frmUsuarios.Show();
-        //}
 
         private void manterToolStripMenuItem_Click_1(object sender, EventArgs e)
         {

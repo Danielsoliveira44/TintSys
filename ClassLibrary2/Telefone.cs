@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary2
 {
-    internal class Telefone
+    public class Telefone
     {
+        private int id;
+        private string telefone;
+        private string tipo;
     }
 }

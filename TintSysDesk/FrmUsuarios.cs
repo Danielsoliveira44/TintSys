@@ -78,5 +78,10 @@ namespace TintSysDesk
         {
 
         }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

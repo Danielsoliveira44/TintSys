@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary2
 {
-    internal class Endereco
+    public class Endereco
     {
     }
 }

@@ -83,5 +83,25 @@ namespace TintSysDesk
         {
 
         }
+
+        private void txtNomeNivel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtIdNivel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSigla_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -34,7 +34,7 @@ namespace TintSysDesk
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void manterToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -42,6 +42,13 @@ namespace TintSysDesk
             FrmUsuarios frmUsuarios = new FrmUsuarios();
             frmUsuarios.MdiParent = this;
             frmUsuarios.Show();
+        }
+
+        private void administrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCliente frmCliente = new FrmCliente();
+            frmCliente.MdiParent = this;
+            frmCliente.Show();
         }
     }
 }

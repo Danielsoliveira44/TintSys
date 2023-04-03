@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -128,17 +129,7 @@ namespace ClassLibrary2
             Banco.Fechar(cmd);
             return lista;
         }
-        public void Atualizar()
-        {
-            var moimoi = Banco.Abrir();
-            moimoi.CommandText = "update usuarios set nome = @nome, senha = md5(@senha), " +
-                "nivel_id = @nivel where id =" + Id;
-            moimoi.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
-            moimoi.Parameters.Add("@senha", MySqlDbType.VarChar).Value = Senha;
-            moimoi.Parameters.Add("@nivel", MySqlDbType.Int32).Value = Nivel.Id;
-            moimoi.ExecuteNonQuery();
-            Banco.Fechar(moimoi);
-        }
         
+
     }
 }

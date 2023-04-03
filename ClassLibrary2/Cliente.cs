@@ -1,63 +1,169 @@
-﻿//using ClassLibrary2;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using ClassLibrary2;
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace TintSysClass
-//{
-//    public class Cliente
-//    {
-//        // atributos
-//        private int id;
-//        private string nome;
-//        private int cpf;
-//        private string email;
-//        private DateTime datacad;
-//        private bool ativo;
-//        private List<Endereco> endereco;
-//        private List<Telefone> telefone;
-
-
-//        // Propriedades (Encapsulamento) getters and setters
-
-//        public int Id { get => id; set => id = value; }
-//        public string Nome { get => nome; set => nome = value; }
-//        public int Cpf { get => cpf; set => cpf = value; }
-//        public string Email { get => email; set => email = value; }
-//        public DateTime Datacad { get => datacad; set => datacad = value; }
-//        public bool Ativo { get => ativo; set => ativo = value; }
-//        internal List<Endereco> EnderecoList { get => endereco; set => endereco = value; }
-//        internal List<Telefone> TelefoneList { get => telefone; set => telefone = value; }
-
-//        // Métodos contrutores 
-//        public Cliente(int id, string nome, int cpf, string email, , bool ativo)
-//        {
-//            Id = id;
-//            Nome = nome;
-//            Cpf = cpf;
-//            Email = email;
-
-//            Ativo = ativo;
-//        }
-//        public Cliente(string nome, int cpf, string email, "default", bool ativo)
-//        {
-//            Nome = nome;
-//            Cpf = cpf;
-//            Email = email;
-//            Ativo = ativo;
-//        }
-//        public Cliente(string nome, string email, bool ativo)
-//        {
-//            Nome = nome;
-//            Email = email;
-//            Ativo = ativo;
-//        }
+namespace TintSysClass
+{
+    public class Cliente
+    {
+        // atributos
+        private int id;
+        private string nome;
+        private string cpf;
+        private string email;
+        private DateTime data;
+        private bool ativo;
+        private List<Endereco> endereco;
+        private List<Telefone> telefone;
 
 
+        // Propriedades (Encapsulamento) getters and setters
+
+        public int Id { get => id; set => id = value; }
+        public string Nome { get => nome; set => nome = value; }
+        public string Cpf { get => cpf; set => cpf = value; }
+        public string Email { get => email; set => email = value; }
+        public DateTime Data { get => data; set => data = value; }
+        public bool Ativo { get => ativo; set => ativo = value; }
+        public List<Endereco> Enderecos { get; set; }
+        public List<Telefone> Telefones { get; set; }
 
 
+        // Métodos contrutores 
+        public Cliente(int id, string nome, string cpf, string email, DateTime data , bool ativo, List<Endereco> enderecos, List<Telefone> telefones)
+        {
+            Id = id;
+            Nome = nome;
+            Cpf = cpf;
+            Email = email;
+            Data = data;
+            Ativo = ativo;
+            Enderecos = enderecos;
+            Telefones = telefones;
+        }
+        public Cliente(string nome, string cpf, string email, DateTime data, bool ativo, List<Endereco> enderecos, List<Telefone> telefones)
+        {
+            Nome = nome;
+            Cpf = cpf;
+            Email = email;
+            Ativo = ativo;
+            Enderecos = enderecos;
+            Telefones = telefones;
+        }
+        public Cliente(string nome, string email, bool ativo )
+        {
+            Nome = nome;
+            Email = email;
+            Ativo = ativo;
+        }
 
-//    }
-//}
+        //public Cliente(int v1, string v2, string v3, string v4, DateTime v5, bool v6)
+        //{
+        //}
+
+        // Métodos da Classes (inserir, alterar, consultar,por Id, por nome, etc.... )
+        public void Inserir() 
+        {
+            // cria uma variável com conexão de banco aberta
+            var cmd = Banco.Abrir();
+            // define o tipo de instrução MySQL a ser processada pelo serv banco dados 
+            cmd.CommandType = CommandType.Text;
+            // define a query sql especificada com parametros ()
+            cmd.CommandText = "insert cliente (nome, cpf, email, datacad, ativo) values (@nome, @cpf, @email, @data, 1)";
+            // cria o parametro e associa ao valor
+            cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
+            cmd.Parameters.AddWithValue("@cpf", Cpf)
+            cmd.Parameters.AddWithValue("@email", Email);
+            cmd.Parameters.AddWithValue("@data", Data);
+            // executa a instrução SQL na conexão
+            cmd.ExecuteNonQuery();
+            // obtendo o id do nível recém inserido
+            cmd.CommandText = "select @@identity";
+            // recupera o id na Propriedade
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
+            // fecha a conexão
+            Banco.Fechar(cmd);
+        }
+        public static Cliente ObterPorId(int _id)
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from clientes where id = @id";
+            cmd.Parameters.AddWithValue("@id", _id);
+            var dr = cmd.ExecuteReader();
+            Cliente cliente = null;
+            while (dr.Read())
+            {
+                cliente = new Cliente(
+                    dr.GetInt32(0),
+                    dr.GetString(1),
+                    dr.GetString(2),
+                    dr.GetString(3),
+                    dr.GetDateTime(4),
+                    dr.GetBoolean(5)
+                    );
+            }
+            Banco.Fechar(cmd);
+            return cliente;
+        }
+        public static List<Cliente> Listar()
+        {
+            List<Cliente> lista = new List<Cliente>();
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from clientes order by nome";
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                lista.Add(new Cliente(dr.GetInt32(0),
+                        dr.GetString(1),
+                        dr.GetString(2),
+                        dr.GetString(3),
+                        dr.GetDateTime(4),
+                        dr.GetBoolean(5)
+                    )
+                );
+            }
+            Banco.Fechar(cmd);
+            return lista;
+        }
+        public void Atualizar()
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update niveis set nome = @nome, sigla = @sigla where id = @id";
+            cmd.Parameters.AddWithValue("@id", Id);
+            cmd.Parameters.AddWithValue("@email", Email);
+            cmd.Parameters.AddWithValue("@cpf", Cpf);
+            cmd.ExecuteNonQuery();
+            Banco.Fechar(cmd);
+        }
+        public int Excluir(int _id)
+        {
+            int msg = 0;
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "UPDATE cliente ativo = 0 where id =" + _id;
+            try
+            {
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    msg = 1;
+                }
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("FOREIGN KEY"))
+                    msg = 2;
+            }
+            Banco.Fechar(cmd);
+            return msg;
+        }
+
+
+    }
+}

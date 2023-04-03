@@ -18,8 +18,8 @@ namespace TintSysClass
         private string email;
         private DateTime data;
         private bool ativo;
-        private List<Endereco> endereco;
-        private List<Telefone> telefone;
+        private List<Endereco> enderecos;
+        private List<Telefone> telefones;
 
 
         // Propriedades (Encapsulamento) getters and setters
@@ -35,7 +35,7 @@ namespace TintSysClass
 
 
         // Métodos contrutores 
-        public Cliente(int id, string nome, string cpf, string email, DateTime data , bool ativo, List<Endereco> enderecos, List<Telefone> telefones)
+        public Cliente(int id, string nome, string cpf, string email, DateTime data , bool ativo)
         {
             Id = id;
             Nome = nome;
@@ -43,8 +43,7 @@ namespace TintSysClass
             Email = email;
             Data = data;
             Ativo = ativo;
-            Enderecos = enderecos;
-            Telefones = telefones;
+            
         }
         public Cliente(string nome, string cpf, string email, DateTime data, bool ativo, List<Endereco> enderecos, List<Telefone> telefones)
         {
@@ -62,10 +61,6 @@ namespace TintSysClass
             Ativo = ativo;
         }
 
-        //public Cliente(int v1, string v2, string v3, string v4, DateTime v5, bool v6)
-        //{
-        //}
-
         // Métodos da Classes (inserir, alterar, consultar,por Id, por nome, etc.... )
         public void Inserir() 
         {
@@ -77,7 +72,7 @@ namespace TintSysClass
             cmd.CommandText = "insert cliente (nome, cpf, email, datacad, ativo) values (@nome, @cpf, @email, @data, 1)";
             // cria o parametro e associa ao valor
             cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
-            cmd.Parameters.AddWithValue("@cpf", Cpf)
+            cmd.Parameters.AddWithValue("@cpf", Cpf);
             cmd.Parameters.AddWithValue("@email", Email);
             cmd.Parameters.AddWithValue("@data", Data);
             // executa a instrução SQL na conexão
@@ -143,25 +138,27 @@ namespace TintSysClass
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
-        public int Excluir(int _id)
+        
+        public static void Arquivar(int _id)
         {
-            int msg = 0;
             var cmd = Banco.Abrir();
-            cmd.CommandText = "UPDATE cliente ativo = 0 where id =" + _id;
-            try
-            {
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    msg = 1;
-                }
-            }
-            catch (Exception e)
-            {
-                if (e.Message.Contains("FOREIGN KEY"))
-                    msg = 2;
-            }
+            cmd.CommandText = "UPDATE cliente ativo = 0 where id " + _id;
+            cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
-            return msg;
+        }
+        public static void Restaurar(int _id)
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "UPDATE cliente set ativo = 1 where id = " + _id;
+            cmd.ExecuteNonQuery();
+            Banco.Fechar(cmd);
+        }
+        public void Excluir(int _id)
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "delete from cliente where id = " + _id;
+            cmd.ExecuteNonQuery();
+            Banco.Fechar(cmd);
         }
 
 

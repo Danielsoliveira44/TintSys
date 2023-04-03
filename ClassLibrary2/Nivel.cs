@@ -103,7 +103,7 @@ namespace TintSysClass
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
-        public int Excluir(int _id)
+        public int arquiva(int _id)
         {
             int msg = 0;
             var cmd = Banco.Abrir();

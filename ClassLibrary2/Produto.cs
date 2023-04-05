@@ -71,7 +71,7 @@ namespace ClassLibrary2
             Id = Convert.ToInt32(cmd.ExecuteScalar());
             Banco.Fechar(cmd);
         }
-        public List<Produto> Listar(string descricao = "") 
+        public static List<Produto> Listar(string descricao = "") 
         {
             List<Produto> lista = new List<Produto>();
             MySqlCommand cmd = Banco.Abrir();

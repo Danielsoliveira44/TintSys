@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvLista = new System.Windows.Forms.DataGridView();
             this.btnInserir = new System.Windows.Forms.Button();
             this.btnListar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
@@ -54,15 +54,15 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvLista
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvLista.AllowUserToAddRows = false;
+            this.dgvLista.AllowUserToDeleteRows = false;
+            this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
@@ -70,12 +70,13 @@
             this.Column5,
             this.Column6,
             this.Column7});
-            this.dataGridView1.Location = new System.Drawing.Point(21, 256);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(500, 150);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvLista.Location = new System.Drawing.Point(21, 256);
+            this.dgvLista.Name = "dgvLista";
+            this.dgvLista.ReadOnly = true;
+            this.dgvLista.RowHeadersVisible = false;
+            this.dgvLista.Size = new System.Drawing.Size(500, 150);
+            this.dgvLista.TabIndex = 0;
+            this.dgvLista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnInserir
             // 
@@ -85,6 +86,7 @@
             this.btnInserir.TabIndex = 1;
             this.btnInserir.Text = "&Inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
+            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // btnListar
             // 
@@ -115,12 +117,13 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(181, 63);
+            this.btnBuscar.Location = new System.Drawing.Point(153, 63);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(37, 23);
             this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "...";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // chkDescontinuado
             // 
@@ -136,8 +139,10 @@
             // 
             this.txtId.Location = new System.Drawing.Point(75, 65);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(100, 20);
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(72, 20);
             this.txtId.TabIndex = 8;
+            this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtDescricao
             // 
@@ -319,10 +324,11 @@
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnListar);
             this.Controls.Add(this.btnInserir);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvLista);
             this.Name = "FrmProduto";
             this.Text = "FrmProduto";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.FrmProduto_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,7 +336,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvLista;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

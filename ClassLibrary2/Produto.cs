@@ -60,7 +60,7 @@ namespace ClassLibrary2
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "insert produtos (descricao, unidade, CodBar, Preco, Desconto, Descontinuado)" +
-                "value(@descricao,@unidade, @codbar, @preco, @desconto, 0)";,
+                "value(@descricao,@unidade, @codbar, @preco, @desconto, 0)";
             cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = Descricao;
             cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = Unidade;
             cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = CodBar;
@@ -76,20 +76,21 @@ namespace ClassLibrary2
             List<Produto> lista = new List<Produto>();
             MySqlCommand cmd = Banco.Abrir();
             if (descricao.Length > 0)
-                cmd.CommandText = "select * from produtos where descricao = '%" + descricao + "%'";
+                cmd.CommandText = "select * from produtos where " +
+                    "descricao like '%" + descricao + "%'";
             else
                 cmd.CommandText = "select * from produtos";
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
                 lista.Add(new Produto(
-                    dr.GetInt32(0),
-                    dr.GetString(1),
-                    dr.GetString(2),
-                    dr.GetString(3),
-                    dr.GetDouble(4),
-                    dr.GetDouble(5),
-                    dr.GetBoolean(6)
+                      dr.GetInt32(0),
+                      dr.GetString(1),
+                      dr.GetString(2),
+                      dr.GetString(3),
+                      dr.GetDouble(4),
+                      dr.GetDouble(5),
+                      dr.GetBoolean(6)
                     ));
             }
             Banco.Fechar(cmd);
@@ -97,22 +98,21 @@ namespace ClassLibrary2
         }
         public static Produto ObterPorId(int id)
         {
-            Produto produto;
-            List<Produto> lista = new List<Produto>();
+            Produto produto = null;
             MySqlCommand cmd = Banco.Abrir();
-            cmd.CommandText = "select * from produtos where id = "+ id;
+            cmd.CommandText = "select * from produtos where id = " + id;
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
                 produto = new Produto(
-                    dr.GetInt32(0),
-                    dr.GetString(1),
-                    dr.GetString(2),
-                    dr.GetString(3),
-                    dr.GetDouble(4),
-                    dr.GetDouble(5),
-                    dr.GetBoolean(6)
-                    );
+                        dr.GetInt32(0),
+                        dr.GetString(1),
+                        dr.GetString(2),
+                        dr.GetString(3),
+                        dr.GetDouble(4),
+                        dr.GetDouble(5),
+                        dr.GetBoolean(6)
+                      );
             }
             Banco.Fechar(cmd);
             return produto;
@@ -120,30 +120,35 @@ namespace ClassLibrary2
         public void Atualizar()
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "update produtos set descricao = @Descricao, unidade = @Unidade, codbar = @CodBar, preco = @preco, desconto, descontinuado" +
-                "value(@descricao,@unidade, @codbar, @preco, @desconto, 0)";,
+            cmd.CommandText = "update produtos set " +
+                "descricao = @descricao, unidade = @unidade, " +
+                "codbar = @codbar,preco = @preco, desconto = @desconto where id = @id";
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = Id;
             cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = Descricao;
-            cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = Unidade;
-            cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = CodBar;
-            cmd.Parameters.Add("@descricao", MySqlDbType.Decimal).Value = Preco;
-            cmd.Parameters.Add("@descricao", MySqlDbType.Decimal).Value = Desconto;
+            cmd.Parameters.Add("@unidade", MySqlDbType.VarChar).Value = Unidade;
+            cmd.Parameters.Add("@codbar", MySqlDbType.VarChar).Value = CodBar;
+            cmd.Parameters.Add("@preco", MySqlDbType.Decimal).Value = Preco;
+            cmd.Parameters.Add("@desconto", MySqlDbType.Decimal).Value = Desconto;
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "select @@identity";
-            Id = Convert.ToInt32(cmd.ExecuteScalar());
             Banco.Fechar(cmd);
         }
         public void Arquivar()
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "update produtos set descontinuado = @Descontinuado"            
-            cmd.CommandText = "select @@identity";
-            Id = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.CommandText = "update produtos set descontinuado = 1 where id = @id";
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = Id;
+            cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
         public void Restaurar()
         {
-
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "update produtos set descontinuado = 0 where id = @id";
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = Id;
+            cmd.ExecuteNonQuery();
+            Banco.Fechar(cmd);
         }
+
     }
 }
 

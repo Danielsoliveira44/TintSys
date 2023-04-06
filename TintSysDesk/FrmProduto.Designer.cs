@@ -90,6 +90,7 @@
             this.dgvLista.RowHeadersWidth = 51;
             this.dgvLista.Size = new System.Drawing.Size(500, 150);
             this.dgvLista.TabIndex = 0;
+            this.dgvLista.Tag = "";
             this.dgvLista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Column1

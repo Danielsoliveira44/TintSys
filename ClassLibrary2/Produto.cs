@@ -122,17 +122,18 @@ namespace ClassLibrary2
             var cmd = Banco.Abrir();
             cmd.CommandText = "update produtos set " +
                 "descricao = @descricao, unidade = @unidade, " +
-                "codbar = @codbar,preco = @preco, desconto = @desconto where id = @id";
+                "codbar = @codbar,preco = @preco, desconto = @desconto descontinuado = @Descontinuado where id = @id";
             cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = Id;
             cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = Descricao;
             cmd.Parameters.Add("@unidade", MySqlDbType.VarChar).Value = Unidade;
             cmd.Parameters.Add("@codbar", MySqlDbType.VarChar).Value = CodBar;
             cmd.Parameters.Add("@preco", MySqlDbType.Decimal).Value = Preco;
             cmd.Parameters.Add("@desconto", MySqlDbType.Decimal).Value = Desconto;
+            cmd.Parameters.Add("@descontinuado", MySqlDbType.Decimal).Value = Descontinuado;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
-        public void Arquivar()
+        public static void Arquivar(int Id)
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "update produtos set descontinuado = 1 where id = @id";
@@ -140,7 +141,7 @@ namespace ClassLibrary2
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
-        public void Restaurar()
+        public static void Restaurar(int Id)
         {
             var cmd = Banco.Abrir();
             cmd.CommandText = "update produtos set descontinuado = 0 where id = @id";

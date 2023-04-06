@@ -38,9 +38,13 @@ namespace TintSysDesk
             else
                 MessageBox.Show("Falha ao gravar o Produto!1");
         }
-        private void CarregaGrid()
+        private void CarregaGrid(string texto="")
         {
-            var lista = Produto.Listar();
+            List<Produto> lista = null;
+            if(texto!=string.Empty)               
+                lista = Produto.Listar(texto);
+            else
+                lista = Produto.Listar();
             int cont = 0;
             dgvLista.Rows.Clear();
             foreach (Produto item in lista)
@@ -96,10 +100,45 @@ namespace TintSysDesk
                 btnBuscar.Text = "...";
                 var produto = Produto.ObterPorId(int.Parse(txtId.Text));
                 txtDescricao.Text = produto.Descricao;
-                txtDesconto.Text = produto.Desconto.ToString("#,##%");
-                txtPreco.Text = produto.Preco.ToString("R$ ##.00");
-                //cmbUnidade.SelectedIndex = 0;
+                txtDesconto.Text = produto.Desconto.ToString();
+                txtPreco.Text = produto.Preco.ToString();
+                txtCodBar.Text = produto.CodBar;
+                cmdUnidade.Text = produto.Unidade;
+                chkDescontinuado.Checked = produto.Descontinuado.();
             }
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            Produto produto = new Produto(
+                
+               txtDescricao.Text,
+               cmdUnidade.Text,
+               txtCodBar.Text,
+               double.Parse(txtPreco.Text),
+               double.Parse(txtDesconto.Text),
+               chkDescontinuado.Checked
+               );
+            produto.Atualizar();
+            CarregaGrid();
+        }
+
+        private void chkDescontinuado_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkDescontinuado.Checked)
+                Produto.Arquivar(int.Parse(txtId));
+            else
+                Produto.Restaurar(int.Parse(txtId));
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPesquisar.Text.Length > 1) 
+            {
+                CarregaGrid(txtPesquisar.Text);
+            }
+        }
+
+        
     }
 }

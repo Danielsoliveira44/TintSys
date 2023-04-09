@@ -59,13 +59,14 @@ namespace ClassLibrary2
         public void Inserir()
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "insert produtos (descricao, unidade, CodBar, Preco, Desconto, Descontinuado)" +
-                "value(@descricao,@unidade, @codbar, @preco, @desconto, 0)";
+            cmd.CommandText = "insert produtos (descricao, unidade, codbar, " +
+                "preco, desconto, descontinuado) " +
+                " values(@descricao, @unidade, @codbar, @preco, @desconto, 0)";
             cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = Descricao;
-            cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = Unidade;
-            cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = CodBar;
-            cmd.Parameters.Add("@descricao", MySqlDbType.Decimal).Value = Preco;
-            cmd.Parameters.Add("@descricao", MySqlDbType.Decimal).Value = Desconto;
+            cmd.Parameters.Add("@unidade", MySqlDbType.VarChar).Value = Unidade;
+            cmd.Parameters.Add("@codbar", MySqlDbType.VarChar).Value = CodBar;
+            cmd.Parameters.Add("@preco", MySqlDbType.Decimal).Value = Preco;
+            cmd.Parameters.Add("@desconto", MySqlDbType.Decimal).Value = Desconto;
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -79,7 +80,32 @@ namespace ClassLibrary2
                 cmd.CommandText = "select * from produtos where " +
                     "descricao like '%" + descricao + "%'";
             else
-                cmd.CommandText = "select * from produtos";
+                cmd.CommandText = "select * from produtos where descontinuado = 0";
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                lista.Add(new Produto(
+                      dr.GetInt32(0),
+                      dr.GetString(1),
+                      dr.GetString(2),
+                      dr.GetString(3),
+                      dr.GetDouble(4),
+                      dr.GetDouble(5),
+                      dr.GetBoolean(6)
+                    ));
+            }
+            Banco.Fechar(cmd);
+            return lista;
+        }
+        public static List<Produto> ListarInativo(string descricao = "")
+        {
+            List<Produto> lista = new List<Produto>();
+            MySqlCommand cmd = Banco.Abrir();
+            if (descricao.Length > 0)
+                cmd.CommandText = "select * from produtos where " +
+                    "descricao like '%" + descricao + "%'";
+            else
+                cmd.CommandText = "select * from produtos where descontinuado = 1";
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -122,14 +148,14 @@ namespace ClassLibrary2
             var cmd = Banco.Abrir();
             cmd.CommandText = "update produtos set " +
                 "descricao = @descricao, unidade = @unidade, " +
-                "codbar = @codbar,preco = @preco, desconto = @desconto descontinuado = @Descontinuado where id = @id";
+                "codbar = @codbar,preco = @preco, desconto = @desconto, descontinuado = @descontinuado where id = @id";
             cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = Id;
             cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = Descricao;
             cmd.Parameters.Add("@unidade", MySqlDbType.VarChar).Value = Unidade;
             cmd.Parameters.Add("@codbar", MySqlDbType.VarChar).Value = CodBar;
             cmd.Parameters.Add("@preco", MySqlDbType.Decimal).Value = Preco;
             cmd.Parameters.Add("@desconto", MySqlDbType.Decimal).Value = Desconto;
-            cmd.Parameters.Add("@descontinuado", MySqlDbType.Decimal).Value = Descontinuado;
+            cmd.Parameters.Add("@descontinuado", MySqlDbType.Bit).Value = Descontinuado;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }

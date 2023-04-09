@@ -98,57 +98,59 @@ namespace TintSysClass
 
         public static List<Pedido> Listar(string _nome = "")//string _nome = ""
         {
-            List<Usuario> lista = new List<Usuario>();
+            List<Pedido> lista = new List<Pedido>();
 
             var cmd = Banco.Abrir();
             if (_nome != string.Empty)
-                cmd.CommandText = "select * from usuarios where nome like '%" + _nome + "%'";
+                cmd.CommandText = "select * from pedidos where nome like '%" + _nome + "%'";
             else
                 cmd.CommandText = "select * from usuarios";
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                lista.Add(new Usuario(
+                lista.Add(new Pedido(
                         dr.GetInt32(0),
-                        dr.GetString(1),
+                        dr.GetDateTime(1),
                         dr.GetString(2),
-                        dr.GetString(3),
-                        Nivel.ObterPorId(dr.GetInt32(4)),
-                        dr.GetBoolean(5)
+                        dr.GetDouble(3),
+                        Cliente.ObterPorId(dr.GetInt32(4)),
+                        Usuario.ObterPorId(dr.GetInt32(5)),
+                        dr.GetDateTime(6),
+                        dr.GetString(7)
                     ));
             }
             Banco.Fechar(cmd);
             return lista;
         }
-        public void Atualizar()
-        {
-            var moimoi = Banco.Abrir();
-            moimoi.CommandText = "update usuarios set nome = @nome, senha = md5(@senha), " +
-                "nivel_id = @nivel where id =" + Id;
-            moimoi.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
-            moimoi.Parameters.Add("@senha", MySqlDbType.VarChar).Value = Senha;
-            moimoi.Parameters.Add("@nivel", MySqlDbType.Int32).Value = Nivel.Id;
-            moimoi.ExecuteNonQuery();
-            Banco.Fechar(moimoi);
-        }
+        //public void Atualizar()
+        //{
+        //    var moimoi = Banco.Abrir();
+        //    moimoi.CommandText = "update pedido set nome = @nome, senha = md5(@senha), " +
+        //        "nivel_id = @nivel where id =" + Id;
+        //    moimoi.Parameters.Add("@nome", MySqlDbType.VarChar).Value = Nome;
+        //    moimoi.Parameters.Add("@senha", MySqlDbType.VarChar).Value = Senha;
+        //    moimoi.Parameters.Add("@nivel", MySqlDbType.Int32).Value = Nivel.Id;
+        //    moimoi.ExecuteNonQuery();
+        //    Banco.Fechar(moimoi);
+        //}
         public static void Arquivar(int _id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "update usuarios set ativo = 0 where id = " + _id;
+            cmd.CommandText = "update pedidos set arquivado_em = default where id = " + _id;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
         public static void Restaurar(int _id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "update usuarios set ativo = 1 where id = " + _id;
+            cmd.CommandText = "update pedidos set arquivado_em = default where id = " + _id;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }
         public void Excluir(int _id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandText = "delete from usuarios where id = " + _id;
+            cmd.CommandText = "delete from pedidos where id = " + _id;
             cmd.ExecuteNonQuery();
             Banco.Fechar(cmd);
         }

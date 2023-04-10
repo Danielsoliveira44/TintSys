@@ -23,6 +23,10 @@ namespace ClassLibrary2
         public string Tipo { get => tipo; set => tipo = value; }
 
         // Métodos contrutores 
+        public Telefone() 
+        {
+            
+        }
         public Telefone(int id,string numero, string tipo)
         {
             Id = id;
@@ -78,12 +82,15 @@ namespace ClassLibrary2
             Banco.Fechar(cmd);
             return telefone;
         }
-        public static List<Telefone> Listar()
+        public static List<Telefone> Listar(string _nome = "")
         {
             List<Telefone> lista = new List<Telefone>();
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from telefones order by numero";
+            if(_nome != string.Empty)
+                cmd.CommandText = "select * from telefones like '%" + _nome + "%'";
+            else
+                cmd.CommandText = "select * from telefones order by numero";
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {

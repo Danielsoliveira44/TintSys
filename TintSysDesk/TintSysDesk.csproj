@@ -132,7 +132,6 @@
     <Compile Include="TesteCliente.Designer.cs">
       <DependentUpon>TesteCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs" />
     <EmbeddedResource Include="FrmCliente.resx">
       <DependentUpon>FrmCliente.cs</DependentUpon>
     </EmbeddedResource>

@@ -19,7 +19,7 @@ namespace TintSysDesk
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show(GetHashCode().ToString());
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

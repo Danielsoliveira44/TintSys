@@ -30,15 +30,20 @@ namespace TintSysDesk
 
         private void pnInserir_Paint(object sender, PaintEventArgs e)
         {
-            if (BtnInsere.Text == "...")
-            {
-                txtId.ReadOnly = false;
-                txtId.Focus();
-                btnBuscar.Text = "Obter";
-            }
+            //if (BtnInsere.Text == "...")
+            //{
+            //    txtId.ReadOnly = false;
+            //    txtId.Focus();
+            //    btnBuscar.Text = "Obter";
+            //}
         }
 
         private void BtnInsere_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
         {
 
         }

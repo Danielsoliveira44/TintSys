@@ -94,6 +94,20 @@
     <Compile Include="FrmCliente.Designer.cs">
       <DependentUpon>FrmCliente.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Compile Include="frmPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPedidos.Designer.cs">
+      <DependentUpon>frmPedidos.cs</DependentUpon>
+=======
+    <Compile Include="FrmPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPedido.Designer.cs">
+      <DependentUpon>FrmPedido.cs</DependentUpon>
+>>>>>>> 2a3e9c818d7fcbbb62d1922f2b987543aa70043c
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +137,14 @@
     <Compile Include="Usuario.cs" />
     <EmbeddedResource Include="FrmCliente.resx">
       <DependentUpon>FrmCliente.cs</DependentUpon>
+    </EmbeddedResource>
+<<<<<<< HEAD
+    <EmbeddedResource Include="frmPedidos.resx">
+      <DependentUpon>frmPedidos.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="FrmPedido.resx">
+      <DependentUpon>FrmPedido.cs</DependentUpon>
+>>>>>>> 2a3e9c818d7fcbbb62d1922f2b987543aa70043c
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>

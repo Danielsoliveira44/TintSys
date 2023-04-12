@@ -10,26 +10,11 @@ using System.Windows.Forms;
 
 namespace TintSysDesk
 {
-    public partial class frmPedidos : Form
+    public partial class FrmPedido : Form
     {
-        public frmPedidos()
+        public FrmPedido()
         {
             InitializeComponent();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmPedidos_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

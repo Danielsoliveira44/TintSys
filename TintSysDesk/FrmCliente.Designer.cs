@@ -41,15 +41,15 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtCadastro = new System.Windows.Forms.TextBox();
             this.dgvCliente = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.Id_Cli = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome_Cli = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cpf_Cli = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email_Cli = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Datacad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
             this.SuspendLayout();
@@ -168,12 +168,47 @@
             this.Cpf_Cli,
             this.Email_Cli,
             this.Datacad});
-            this.dgvCliente.Location = new System.Drawing.Point(75, 397);
+            this.dgvCliente.Location = new System.Drawing.Point(44, 398);
             this.dgvCliente.Name = "dgvCliente";
             this.dgvCliente.RowHeadersVisible = false;
             this.dgvCliente.Size = new System.Drawing.Size(656, 156);
             this.dgvCliente.TabIndex = 14;
             this.dgvCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Id_Cli
+            // 
+            this.Id_Cli.Frozen = true;
+            this.Id_Cli.HeaderText = "ID";
+            this.Id_Cli.Name = "Id_Cli";
+            this.Id_Cli.ReadOnly = true;
+            // 
+            // Nome_Cli
+            // 
+            this.Nome_Cli.Frozen = true;
+            this.Nome_Cli.HeaderText = "Nome";
+            this.Nome_Cli.Name = "Nome_Cli";
+            this.Nome_Cli.Width = 150;
+            // 
+            // Cpf_Cli
+            // 
+            this.Cpf_Cli.Frozen = true;
+            this.Cpf_Cli.HeaderText = "CPF";
+            this.Cpf_Cli.Name = "Cpf_Cli";
+            this.Cpf_Cli.Width = 130;
+            // 
+            // Email_Cli
+            // 
+            this.Email_Cli.Frozen = true;
+            this.Email_Cli.HeaderText = "Email";
+            this.Email_Cli.Name = "Email_Cli";
+            this.Email_Cli.Width = 150;
+            // 
+            // Datacad
+            // 
+            this.Datacad.Frozen = true;
+            this.Datacad.HeaderText = "Data de cadastro";
+            this.Datacad.Name = "Datacad";
+            this.Datacad.Width = 120;
             // 
             // button3
             // 
@@ -221,41 +256,6 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Usuarios";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // Id_Cli
-            // 
-            this.Id_Cli.Frozen = true;
-            this.Id_Cli.HeaderText = "ID";
-            this.Id_Cli.Name = "Id_Cli";
-            this.Id_Cli.ReadOnly = true;
-            // 
-            // Nome_Cli
-            // 
-            this.Nome_Cli.Frozen = true;
-            this.Nome_Cli.HeaderText = "Nome";
-            this.Nome_Cli.Name = "Nome_Cli";
-            this.Nome_Cli.Width = 150;
-            // 
-            // Cpf_Cli
-            // 
-            this.Cpf_Cli.Frozen = true;
-            this.Cpf_Cli.HeaderText = "CPF";
-            this.Cpf_Cli.Name = "Cpf_Cli";
-            this.Cpf_Cli.Width = 130;
-            // 
-            // Email_Cli
-            // 
-            this.Email_Cli.Frozen = true;
-            this.Email_Cli.HeaderText = "Email";
-            this.Email_Cli.Name = "Email_Cli";
-            this.Email_Cli.Width = 150;
-            // 
-            // Datacad
-            // 
-            this.Datacad.Frozen = true;
-            this.Datacad.HeaderText = "Data de cadastro";
-            this.Datacad.Name = "Datacad";
-            this.Datacad.Width = 120;
             // 
             // comboBox1
             // 

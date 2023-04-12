@@ -16,5 +16,31 @@ namespace TintSysDesk
         {
             InitializeComponent();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            ;       
+                
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnInserir_Paint(object sender, PaintEventArgs e)
+        {
+            if (BtnInsere.Text == "...")
+            {
+                txtId.ReadOnly = false;
+                txtId.Focus();
+                btnBuscar.Text = "Obter";
+            }
+        }
+
+        private void BtnInsere_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

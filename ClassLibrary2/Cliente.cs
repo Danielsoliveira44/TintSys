@@ -34,6 +34,7 @@ namespace TintSysClass
         public List<Telefone> Telefones { get; set; }
 
 
+
         // Métodos contrutores 
         public Cliente(int id, string nome, string cpf, string email, DateTime data , bool ativo)
         {
@@ -59,6 +60,17 @@ namespace TintSysClass
             Nome = nome;
             Email = email;
             Ativo = ativo;
+        }
+        public Cliente(int id, string nome, string cpf, string email, DateTime data, bool ativo, List<Endereco> enderecos, List<Telefone> telefones)
+        {
+            Id = id;
+            Nome = nome;
+            Cpf = cpf;
+            Email = email;
+            Data = data;
+            Ativo = ativo;
+            Enderecos = enderecos;
+            Telefones = telefones;
         }
 
         // Métodos da Classes (inserir, alterar, consultar,por Id, por nome, etc.... )
@@ -100,7 +112,9 @@ namespace TintSysClass
                     dr.GetString(2),
                     dr.GetString(3),
                     dr.GetDateTime(4),
-                    dr.GetBoolean(5)
+                    dr.GetBoolean(5),
+                    Endereco.Listar(dr.GetString(6)),
+                    Telefone.Listar(dr.GetString(7))
                     );
             }
             Banco.Fechar(cmd);

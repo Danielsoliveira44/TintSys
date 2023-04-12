@@ -37,7 +37,6 @@
             this.usuáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mspPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,8 +47,8 @@
             this.cadastroToolStripMenuItem});
             this.mspPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mspPrincipal.Name = "mspPrincipal";
-            this.mspPrincipal.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.mspPrincipal.Size = new System.Drawing.Size(1261, 28);
+            this.mspPrincipal.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.mspPrincipal.Size = new System.Drawing.Size(946, 24);
             this.mspPrincipal.TabIndex = 1;
             this.mspPrincipal.Text = "menuStrip1";
             this.mspPrincipal.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -59,10 +58,9 @@
             this.cadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clienteToolStripMenuItem,
             this.produtosToolStripMenuItem,
-            this.usuáriosToolStripMenuItem,
-            this.pedidosToolStripMenuItem});
+            this.usuáriosToolStripMenuItem});
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastroToolStripMenuItem.Text = "&Cadastros";
             this.cadastroToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
             // 
@@ -71,21 +69,21 @@
             this.clienteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.administrarToolStripMenuItem});
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clienteToolStripMenuItem.Text = "C&lientes";
             this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
             // 
             // administrarToolStripMenuItem
             // 
             this.administrarToolStripMenuItem.Name = "administrarToolStripMenuItem";
-            this.administrarToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.administrarToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.administrarToolStripMenuItem.Text = "&Administrar";
             this.administrarToolStripMenuItem.Click += new System.EventHandler(this.administrarToolStripMenuItem_Click);
             // 
             // produtosToolStripMenuItem
             // 
             this.produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
-            this.produtosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.produtosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.produtosToolStripMenuItem.Text = "&Produtos";
             this.produtosToolStripMenuItem.Click += new System.EventHandler(this.produtosToolStripMenuItem_Click);
             // 
@@ -95,39 +93,31 @@
             this.manterToolStripMenuItem,
             this.listarToolStripMenuItem});
             this.usuáriosToolStripMenuItem.Name = "usuáriosToolStripMenuItem";
-            this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.usuáriosToolStripMenuItem.Text = "&Usuários";
             // 
             // manterToolStripMenuItem
             // 
             this.manterToolStripMenuItem.Name = "manterToolStripMenuItem";
-            this.manterToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.manterToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.manterToolStripMenuItem.Text = "&Administrar";
             this.manterToolStripMenuItem.Click += new System.EventHandler(this.manterToolStripMenuItem_Click_1);
             // 
             // listarToolStripMenuItem
             // 
             this.listarToolStripMenuItem.Name = "listarToolStripMenuItem";
-            this.listarToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.listarToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.listarToolStripMenuItem.Text = "&Listar";
-            // 
-            // pedidosToolStripMenuItem
-            // 
-            this.pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
-            this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.pedidosToolStripMenuItem.Text = "Pedidos";
-            this.pedidosToolStripMenuItem.Click += new System.EventHandler(this.pedidosToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1261, 873);
+            this.ClientSize = new System.Drawing.Size(946, 709);
             this.Controls.Add(this.mspPrincipal);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mspPrincipal;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "TINT SYS CLASS 1.0";
@@ -149,6 +139,5 @@
         private System.Windows.Forms.ToolStripMenuItem manterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administrarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pedidosToolStripMenuItem;
     }
 }

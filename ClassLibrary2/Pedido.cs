@@ -22,6 +22,7 @@ namespace TintSysClass
         public string Hashcode { get; set; }
 
 
+
         // construtores
         public Pedido()
         {
@@ -98,15 +99,15 @@ namespace TintSysClass
             Banco.Fechar(cmd);
             return pedido;
         }
-        public static Pedido ObterPorCliente(int _id)
+        public static List<Pedido> ObterPorCliente(int id)
         {
-            Pedido pedido = null;
+            List<Pedido> pedidos = null;
             var cmd = Banco.Abrir();
-            cmd.CommandText = "select * from pedidos where id = " + _id;
+            cmd.CommandText = "select * from pedidos where cliente_id = " + id;
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                pedido = new Pedido(
+                pedidos.Add(new Pedido(
                         dr.GetInt32(0),
                         dr.GetDateTime(1),
                         dr.GetString(2),
@@ -115,10 +116,10 @@ namespace TintSysClass
                         Usuario.ObterPorId(dr.GetInt32(5)),
                         dr.GetDateTime(6),
                         dr.GetString(7)
-                    );
+                    ));
             }
             Banco.Fechar(cmd);
-            return pedido;
+            return pedidos;
         }
 
         public static List<Pedido> Listar(string _nome = "")//string _nome = ""
@@ -179,7 +180,7 @@ namespace TintSysClass
             sb.Append(cli);
             sb.Append(user);
             sb.Append(GetHashCode());
-            return sb; 
+            return sb.ToString(); 
         }
     }
 }
